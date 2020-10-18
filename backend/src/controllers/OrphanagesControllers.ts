@@ -31,6 +31,7 @@ export default {
             opening_hours,
             open_on_weekends
         } = request.body;
+        console.log(request.body)
     
         const orphanageRepository = getRepository(Orphanage);
 

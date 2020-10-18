@@ -9,15 +9,15 @@ import api from '../../services/api';
 interface OrphanageDataRouteParams {
   position: {
     latitude: number;
-    longitude: number
+    longitude: number;
   }
 }
 
 export default function OrphanageData() {
-  const [name, setName] = useState(' ');
-  const [about, setAbout] = useState(' ');
-  const [instructions, setInstructions] = useState(' ');
-  const [opening_hours, setOpeningHours] = useState(' ');
+  const [name, setName] = useState('');
+  const [about, setAbout] = useState('');
+  const [instructions, setInstructions] = useState('');
+  const [opening_hours, setOpeningHours] = useState('');
   const [open_on_weekends, setOpenOnWeekends] = useState(true);
   const [images, setImages] = useState<string[]>([]);
 
@@ -25,30 +25,29 @@ export default function OrphanageData() {
   const route = useRoute();
   const params = route.params as OrphanageDataRouteParams;
 
-  async function handleCreateOrphanage() {
+  async  function handleCreateOrphanage() {
     const {latitude, longitude} = params.position;
 
     const data = new FormData();
+      data.append('name', name); 
+      data.append('about', about); 
+      data.append('latitude', String(latitude)); 
+      data.append('longitude', String(longitude)); 
+      data.append('instructions', instructions);
+      data.append('opening_hours', opening_hours);
+      data.append('open_on_weekends', String(open_on_weekends));
 
-    data.append('name', name)
-    data.append('about', about)
-    data.append('latitude', String(latitude))
-    data.append('longitude', String(longitude))
-    data.append('instructions', instructions)
-    data.append('opening_hours', opening_hours)
-    data.append('open_on_weekends', String(open_on_weekends))
+      images.forEach((image, index) => {
+        data.append('images', {
+          name: `image_${index}.jpg`,
+          type: 'image.jpg',
+          uri: image,
+        } as any)
+      })
 
-    images.forEach((image, index) => {
-      data.append('images', {
-        name: `image_${index}.jpg`,
-        type: 'image.jpg',
-        uri: image,
-      } as any)
-    })
+      await api.post('orphanages', data);
 
-    await api.post('orphanages', data);
-
-    navigation.navigate('OrphanagesMap');
+      navigation.navigate('OrphanagesMap');
   }
 
   async function handleSelectImages() {
@@ -82,7 +81,7 @@ export default function OrphanageData() {
       <TextInput
         style={styles.input}
         value= {name}
-        onChangeText= {setName}
+        onChangeText={setName}
       />
 
       <Text style={styles.label}>Sobre</Text>
@@ -90,7 +89,7 @@ export default function OrphanageData() {
         style={[styles.input, { height: 110 }]}
         multiline
         value= {about}
-        onChangeText= {setAbout}
+        onChangeText={setAbout}
       />
 
       {/* <Text style={styles.label}>Whatsapp</Text>
@@ -122,14 +121,14 @@ export default function OrphanageData() {
         style={[styles.input, { height: 110 }]}
         multiline
         value= {instructions}
-        onChangeText= {setInstructions}
+        onChangeText={setInstructions}
       />
 
       <Text style={styles.label}>Horario de visitas</Text>
       <TextInput
         style={styles.input}
         value= {opening_hours}
-        onChangeText= {setOpeningHours}
+        onChangeText={setOpeningHours}
       />
 
       <View style={styles.switchContainer}>

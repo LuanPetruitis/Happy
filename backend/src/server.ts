@@ -31,7 +31,7 @@ app.use(errorHandler);
 // Route Params: http://localhost:3333/users/1 (identificar um recurso)
 // Body: http://localhost:3333/users(identificar um recurso)
 
-app.listen(3333);
+app.listen(3006);
 
 
 // Driver nativo, Query builder, ORM
