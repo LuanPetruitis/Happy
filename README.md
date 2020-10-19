@@ -43,6 +43,10 @@ O projeto está em desenvolvimento na [Next Level Week 3](https://nextlevelweek.
 
 ## ⚙ Instalação e Start
 
+- Faça um yarn no terminal de cada pasta ou um npm install
+- Para executar o backend o comando é yarn dev
+- Já para executar a pasta mobile e web é yarn start
+
 
 ## 🤝 Contribuições
 
