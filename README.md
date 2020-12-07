@@ -25,7 +25,7 @@
 
 Uma plataforma para facilitar o encontro de orfanatos por pessoas que querem visita-los.
 
-O projeto está em desenvolvimento na [Next Level Week 3](https://nextlevelweek.com/episodios/omnistack/1/edicao/3)
+O projeto foi desenvolvido na [Next Level Week 3](https://nextlevelweek.com/episodios/omnistack/1/edicao/3)
 
 
 ## 📸 Screenshots
